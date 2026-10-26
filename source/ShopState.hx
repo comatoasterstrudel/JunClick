@@ -45,8 +45,8 @@ class ShopState extends FlxSubState {
         {
             name: "Grand Painting",
             sprname: "grandposter",
-            description: "asdads",
-            effect: "",
+            description: "A beautiful painting! By rightdownright",
+            effect: "+ 4 Ducks Per Quarter Second",
             cost: 400
         },
     ];
