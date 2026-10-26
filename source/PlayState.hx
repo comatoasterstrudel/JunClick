@@ -34,6 +34,10 @@ class PlayState extends FlxState
 	// models
 	var sky:FoxPanoramaSky;
 	var jun:FoxModel;
+	var orangeSoda:FoxModel;
+	var burger:FoxModel;
+	var tofu:FoxModel;
+	var painting:FoxModel;
 
 	// jun scale vals
 	var targetScaleX:Float = 1;
@@ -162,6 +166,31 @@ class PlayState extends FlxState
 		shopButton.align(2);
 		shopButton.camera = camEverything;
 		add(shopButton);
+
+		// ADD UPGRADE MODELS
+		orangeSoda = new FoxModel(-3, -3, -3);
+		orangeSoda.loadOBJ("models/coca_cola_soda_can.obj");
+		orangeSoda.scale.setTo(.3, .3, .3);
+		scene.add(orangeSoda);
+
+		burger = new FoxModel(-1, -2, -3);
+		burger.loadOBJ("models/cute_hamburger_-_free_3d_model.obj");
+		burger.scale.setTo(.3, .3, .3);
+		scene.add(burger);
+
+		tofu = new FoxModel(-1.5, -2, -3);
+		tofu.loadOBJ("models/tofu_on_a_cutting_board___fbx.obj");
+		tofu.scale.setTo(1, 1, 1);
+		scene.add(tofu);
+
+		painting = new FoxModel(3, -2, -3);
+		painting.loadOBJ("models/artist_easel.obj");
+		painting.scale.setTo(1, 1, 1);
+		scene.add(painting);
+
+		updateBoughtItems();
+
+		startAutoDucks();
 	}
 
 	override public function update(elapsed:Float)
@@ -177,6 +206,10 @@ class PlayState extends FlxState
 		handleRubberDucks(elapsed);
 
 		handleShopMenu();
+
+		#if debug
+		if(FlxG.keys.pressed.SEVEN) ducks += 1000;
+		#end
 	}
 
 	function handleClick():Void{
@@ -251,7 +284,7 @@ class PlayState extends FlxState
 	}
 
 	function addRubberDuck():FoxModel{
-		if(duckSprites.length > 300){
+		if(duckSprites.length > 2000){
 			return null;
 		}
 
@@ -298,6 +331,8 @@ class PlayState extends FlxState
 			canLeave = false;
 
 			openSubState(new ShopState(camShopItem, function():Void{
+				updateBoughtItems();
+
 				camEverything.filters = [];
 				shopButton.visible = true;
 
@@ -306,5 +341,60 @@ class PlayState extends FlxState
 				});
 			}));
 		}
+	}
+
+	function updateBoughtItems():Void{
+		if(ShopState.boughtItems.contains("Orange Soda")){
+			orangeSoda.visible = true;
+		} else {
+			orangeSoda.visible = false;
+		}
+
+		if(ShopState.boughtItems.contains("Veggie Burger")){
+			burger.visible = true;
+		} else {
+			burger.visible = false;
+		}
+
+		if(ShopState.boughtItems.contains("Tofu")){
+			tofu.visible = true;
+		} else {
+			tofu.visible = false;
+		}
+
+		if(ShopState.boughtItems.contains("Grand Painting")){
+			painting.visible = true;
+		} else {
+			painting.visible = false;
+		}
+	}
+
+	function startAutoDucks():Void{
+		new FlxTimer().start(.25, function(f):Void{
+			var autoDucks:Int = 0;
+
+			if(ShopState.boughtItems.contains("Orange Soda")){
+				autoDucks += 1;
+			}
+
+			if(ShopState.boughtItems.contains("Veggie Burger")){
+				autoDucks += 2;
+			}
+			
+			if(ShopState.boughtItems.contains("Tofu")){
+				autoDucks += 3;
+			}
+
+			if(ShopState.boughtItems.contains("Grand Painting")){
+				autoDucks += 4;
+			}
+
+			for(i in 0...autoDucks){
+				ducks += 1;
+				addRubberDuck();
+			}
+
+			startAutoDucks();
+		});
 	}
 }

@@ -1,0 +1,10 @@
+# Converted by VisioMake
+newmtl Wrap
+Kd 1 1 1
+Ns 692.776354
+map_Kd coca_cola_soda_can_0.jpg
+
+newmtl Metalic
+Kd 0.673848 0.673848 0.673848
+Ns 721.805028
+

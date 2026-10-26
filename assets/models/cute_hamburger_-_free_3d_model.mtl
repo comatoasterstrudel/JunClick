@@ -1,0 +1,21 @@
+# Converted by VisioMake
+newmtl Material.004
+Kd 0.8 0.379596 0.076425
+Ns 1
+
+newmtl Material.003
+Kd 0.176979 0.8 0.163781
+Ns 1
+
+newmtl Material.002
+Kd 0.603815 0.105694 0.053353
+Ns 1
+
+newmtl Material.001
+Kd 1 0.446022 0.013182
+Ns 1
+
+newmtl Material.009
+Kd 0 0 0
+Ns 529.740354
+

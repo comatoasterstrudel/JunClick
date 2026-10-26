@@ -25,25 +25,25 @@ class ShopState extends FlxSubState {
             name: "Orange Soda",
             sprname: "orangesoda",
             description: "I have orange soda in my room",
-            effect: "+ 2 Ducks Per Quarter Second",
+            effect: "+ 1 Duck Per Quarter Second",
             cost: 100
         },
         {
             name: "Veggie Burger",
             sprname: "veggieburger",
-            description: "asdads",
-            effect: "",
+            description: "Heh!! Impossible..!",
+            effect: "+ 2 Ducks Per Quarter Second",
             cost: 200
         },
         {
             name: "Tofu",
             sprname: "tofu",
-            description: "asdads",
-            effect: "",
+            description: "Some sort of mole would love it !",
+            effect: "+ 3 Ducks Per Quarter Second",
             cost: 300
         },
         {
-            name: "Grand Poster",
+            name: "Grand Painting",
             sprname: "grandposter",
             description: "asdads",
             effect: "",
